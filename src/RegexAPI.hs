@@ -4,7 +4,7 @@ module RegexAPI where
 
 import Grammar
 import Constants
-import DFACore
+import DFA
 import ParseStringIntoTokens
 import ParseTokensIntoRawAST
 import ParseRawASTIntoAST
@@ -16,13 +16,14 @@ import Data.Maybe
 import String
 import Terminal
 
+
 ----------------------------------------------
 --- API
 ----------------------------------------------
 
 parseStringToCRE :: String -> Maybe RE
 parseStringToCRE s = case parseTokensIntoRawAst $ parseTokens s False of
-                    (Just rawRe) -> Just $ mkCanon $ t_IREtoCRE $ tRaw $ fromJust $ parseTokensIntoRawAst $ parseTokens s False
+                    (Just _) -> Just $ mkCanon $ t_IREtoCRE $ tRaw $ fromJust $ parseTokensIntoRawAst $ parseTokens s False
                     Nothing -> Nothing
 
 -- Given a redex string, return an automaton that recognizes that redex.
@@ -35,8 +36,9 @@ parseRegex s = case parseStringToCRE s of
 parseLine :: DFAWithCClassesEncoding -> String -> [(Int, Int)]
 parseLine dwe@(_, enc) s = reduceListFromLeft $ parseLines dwe ((-2):(map (\c -> mapToRepresentative enc (ord c)) s) ++ [-3]) 0
 
+-- Todo: Smell: index not used, check caller
 parseLines :: DFAWithCClassesEncoding -> [Int] -> Int -> [(Int, Int)]
-parseLines (dfa@(_, initial, _, _), enc) inputs index = 
+parseLines (dfa@(_, initial, _, _), _) inputs index = 
 	filter (/= ((-1),(-1))) $
 	map (\(n, s) -> parseSubLine s n) 
 		$ zip [0,1..] 

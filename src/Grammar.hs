@@ -110,21 +110,8 @@ instance Show CRE where
     show (CSet rs) = "[" ++ show rs ++ "]"
 
 pattern SRLU n m = (CSet (CRange [LowerBoundRange m , UpperBoundRange n]))
-pattern RLU n m rs = (CRange ((LowerBoundRange n):(UpperBoundRange m):rs))
-pattern RSpan n m rs = (CRange ((R.SpanRange n m):rs))
 pattern PVoid = CRange [LowerBoundRange 136756 , UpperBoundRange (-4)]
 pattern CVoid = CSet PVoid
-pattern PEmpty = CRange [SingletonRange (-1)]
 pattern CEmpty = CSet PEmpty
 pattern PAny = CRange [SpanRange (-3) 136755]
 pattern CAny = CSet PAny
-
-instance Show CRange where
-    show (CRange ([]))                          = ""
-    show (CRange ((R.SingletonRange n):rs))     = intToChar n ++ show (CRange rs) 
-    show (RSpan (-3) 136755 rs)                 = "Σ" ++ show (CRange rs)
-    show (RLU 136756 (-4) rs)                   = "Ø" ++ show (CRange rs)
-    show (RSpan l r rs)                         = "[" ++ intToChar l ++ "," ++ intToChar r ++ "]" ++ show (CRange rs)
-    show (CRange ((R.LowerBoundRange l):rs))    = "[" ++ intToChar l ++ ",∞]" ++ show (CRange rs)
-    show (CRange ((R.UpperBoundRange r):rs))    = "[∞," ++ intToChar r ++ "]" ++ show (CRange rs)
-    show (CRange ((R.InfiniteRange):rs))        = "∞" ++ show (CRange rs)

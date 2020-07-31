@@ -1,6 +1,6 @@
 {-# LANGUAGE DeriveGeneric #-}
 
-module DFACore where
+module DFA where
 
 import GHC.Generics (Generic)
 import Constants

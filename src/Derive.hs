@@ -9,9 +9,7 @@ emptyset = [R.SingletonRange (-1::Int)]
 
 -- Given a state and an input, return the derived state. We assume that there is no empty input.
 derive :: RE -> Int -> RE
-derive re int = 
-    --(\ res -> trace ("derive>> "  ++ (show . intToChar) int ++ " + " ++ show re ++ " ::= " ++ (show $ mkCanon res)) res) $ 
-    derive' re int
+derive re int = derive' re int
 
 derive' :: RE -> Int -> RE
 derive' (CConcat l r) i     | (not . isNullable) l = leftderivate
