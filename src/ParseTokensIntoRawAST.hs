@@ -6,6 +6,7 @@ import Grammar
 import ParserCon
 import Data.Char
 
+
 parseTokensIntoRawAst :: [Token] -> Maybe RawRE
 parseTokensIntoRawAst = parse p_re
 

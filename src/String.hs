@@ -14,6 +14,7 @@ rangesToList ((R.SingletonRange s):xs) = (s, s) : rangesToList xs
 invertMatches :: Int -> Int -> [(Int,Int)] -> [(Int,Int)]
 invertMatches lb ub ms = rangesToList $ R.intersection [R.SpanRange lb ub] $ R.invert $ listToRanges ms
 
+
 {-|
   Splits the string into two strings at the specified index
 -}

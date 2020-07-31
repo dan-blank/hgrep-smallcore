@@ -33,7 +33,6 @@ setColor color = "\x1b[" ++ (show color) ++ "m"
 resetColor :: String
 resetColor = setColor Reset
 
-
 {-|
   Highlight only part of the string captured by 'start' and 'end' indices
 -}

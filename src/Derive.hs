@@ -2,11 +2,8 @@ module Derive where
 
 import Grammar
 import Constants
-import Simplifier
 import Data.Range.Range as R
-import Data.Char
 import Data.List
-import Debug.Trace
 
 emptyset = [R.SingletonRange (-1::Int)]
 
@@ -45,7 +42,6 @@ deriveCHelper (CConcat l r)  = [R.intersection left right | left <-l', right <-r
 							where
                                 l' = deriveCHelper l
                                 r' = deriveCHelper r
-
 
 toEmptyOrVoid :: RE -> RE
 toEmptyOrVoid re    | isNullable re = cEmpty

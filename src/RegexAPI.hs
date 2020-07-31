@@ -9,16 +9,10 @@ import ParseStringIntoTokens
 import ParseTokensIntoRawAST
 import ParseRawASTIntoAST
 import Simplifier
-import DFABuilder
-import DFAMatcher
 import IREtoCRE
-import Derive
-import qualified Data.HashSet as S
-import Debug.Trace
 import Data.Char
 import Data.List
 import Data.Maybe
-import Data.Range.Range as R
 import String
 import Terminal
 

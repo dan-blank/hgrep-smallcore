@@ -1,13 +1,9 @@
 module Main where
 
-import System.Environment
 import RegexAPI
-import Grammar
 import FileSystem
 import Data.Maybe
 import Data.Char
-import Data.Range.Range as R
-import Data.List
 import Options.Applicative
 import Data.Semigroup ((<>))
 
@@ -16,19 +12,19 @@ import Data.Semigroup ((<>))
 ----------------------------------------------
 
 main = 
-	do
-		cliargs <- execParser $ info (opt <**> helper)
-				  ( fullDesc
-					 <> progDesc "Search for lines in FILES by giving a search regex PATTERN"
-					 <> header "A primitive re-implentation of Grep using Haskell and Parser Derivates" )
-		let flags = oflags cliargs
-		let charmanipulator = if ignore_case flags then toLower else id
-		let dwe = fromJust $ parseRegex $ opattern cliargs
-		contents <- readFiles $ ofiles cliargs -- list of contents of each existing file
-		let manyLines = concatMap lines contents
-		let doInvertFlag = invert_match flags
-		let highlightedLines = highlightLines dwe (map (map charmanipulator) manyLines) doInvertFlag
-		mapM_ putStrLn highlightedLines
+  do
+    cliargs <- execParser $ info (opt <**> helper)
+          ( fullDesc
+           <> progDesc "Search for lines in FILES by giving a search regex PATTERN"
+           <> header "A primitive re-implentation of Grep using Haskell and Parser Derivates" )
+    let flags = oflags cliargs
+    let charmanipulator = if ignoreCase flags then toLower else id
+    let dwe = fromJust $ parseRegex $ opattern cliargs
+    contents <- readFiles $ ofiles cliargs -- list of contents of each existing file
+    let manyLines = concatMap lines contents
+    let doInvertFlag = invertMatch flags
+    let highlightedLines = highlightLines dwe (map (map charmanipulator) manyLines) doInvertFlag
+    mapM_ putStrLn highlightedLines
 
 ----------------------------------------------
 -- Optparse
@@ -48,8 +44,8 @@ opt = Opt
     <*> pFlags
 
 data Flags = Flags
-  { invert_match :: Bool
-  , ignore_case :: Bool }
+  { invertMatch :: Bool
+  , ignoreCase :: Bool }
 
 pFlags :: Parser Flags
 pFlags = Flags
@@ -59,8 +55,3 @@ pFlags = Flags
     <*> switch
         ( long "ignore-case"
         <> help "Don't distinguisch between lower and upercase letters." )
-
-
-
-
-

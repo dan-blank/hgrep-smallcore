@@ -2,7 +2,6 @@ module FileSystem where
 
 import System.Directory
 
-
 {-|
   Takes a list of file names and returns
   a list of the files' contents.

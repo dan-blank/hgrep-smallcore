@@ -1,5 +1,4 @@
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE UndecidableInstances #-}
@@ -90,6 +89,7 @@ data Token =
     TPipe       |
     TStar
     deriving (Eq, Show)
+
 
 cEmpty = CSet $ CRange [(R.SingletonRange empty)]
 cAnchorBeg = CSet $ CRange [(R.SingletonRange anchorBeg)]

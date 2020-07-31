@@ -3,7 +3,6 @@ module Simplifier where
 import Grammar
 import Constants
 import Data.Range.Range as R
-import Data.List
 
 -- Transform a RE into an RE that is in canonical form. Two REs which are equivalent should result in the same canonical forms.
 mkCanon :: RE -> RE

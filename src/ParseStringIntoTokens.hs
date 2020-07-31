@@ -1,9 +1,6 @@
 module ParseStringIntoTokens where
 
---import Test.HUnit
 import Grammar
-import Data.List
-
 
 -- Parses a String into an array of tokes which are already excaped.
 -- "^ab"    => [(TAnchorBeg),(TChar 'a'),(TChar 'b')]

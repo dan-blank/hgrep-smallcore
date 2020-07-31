@@ -3,7 +3,6 @@ module IREtoCRE where
 import Grammar
 import Constants
 import Data.Range.Range as R
-import Data.List
 import Data.Char
 
 
@@ -15,7 +14,6 @@ word = CSet $ CRange $ R.mergeRanges [bigLetters, smallLetters, digits, undersco
 --wordinv = CSet $ CRange $ R.invert $ R.mergeRanges [bigLetters, smallLetters, digits, underscore]
 --anchorSmallB = CUnion (CConcat word cEmpty) (CConcat cEmpty word)
 --anchorSmallBinv = CUnion (CConcat wordinv cEmptyInv) (CConcat cEmptyInv wordinv)
-
 
 t_IREtoCRE :: IRE -> CRE
 t_IREtoCRE = translateForced

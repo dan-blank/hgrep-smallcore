@@ -1,9 +1,9 @@
 module ParseRawASTIntoAST where
 
 import Grammar
-import Debug.Trace
 
 -- Translates a raw AST into an AST that is simplier (uses less IREgex operations) and more compact.
+
 
 tRaw :: RawRE -> IRE
 tRaw (RUnion s r) = Union (tSimple s) (tRaw r)
