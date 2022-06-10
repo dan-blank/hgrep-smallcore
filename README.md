@@ -1,6 +1,6 @@
 # hgrep-smallcore
 
-hgrep-smallcore is yet another haskell reimplementation of [grep](https://en.wikipedia.org/wiki/Grep) based on the paper ["Regular-expression derivatives reexamined"](https://www.ccs.neu.edu/home/turon/re-deriv.pdf). I wrote this together with Borna Bešić (who focused on the user facing parts, while I focused the regex engine) as an university project and polished it up slightly. It is able to process ERE compliant regexes (for the moment, sans [negated character sets](https://www.regular-expressions.info/charclass.html)). Works best on Linux. Interesting features:
+hgrep-smallcore is yet another haskell reimplementation of [grep](https://en.wikipedia.org/wiki/Grep) based on the paper ["Regular-expression derivatives reexamined"](https://www.ccs.neu.edu/home/turon/re-deriv.pdf). I wrote this together with [Borna Bešić](https://github.com/bornabesic) (who focused on the user facing parts, while I focused the regex engine) as an university project and polished it up slightly. It is able to process ERE compliant regexes (for the moment, sans [negated character sets](https://www.regular-expressions.info/charclass.html)). Works best on Linux. Interesting features:
 
 * It reduces [regexes](https://www.regular-expressions.info/posix.html) to a small core of 4 constructs, where the smallest construct is that of a character set (see 4.2 in the paper):
 ``` Haskell
@@ -31,9 +31,10 @@ Lessons and concepts learned
 
 **Mistake: Use of constants in-place as guards in pattern matching.** Wrong example:
 ``` Haskell
-someConstant = 42
-data SomeData = SomeData int
+data SomeWrapperAroundAnInt = SomeWrapperAroundAnInt int
 
-someFunction SomeData someConstant = -- do something, assuming that the input is (SomeData 42)
+someConstant = 42
+
+someFunction (SomeWrapperAroundAnInt someConstant) = -- do something, assuming that the input is (SomeWrapperAroundAnInt 42)
 ```
 When using `someConstant` within a pattern matching, `someConstant` functions as a new variable name and binds whatever value is at this position in the pattern. I misused the constant as a guard, expecting the pattern to only match when the value at this position is equal to the constant. A rather obvious mistake in hindsight. Here is a stackoverflow thread with solutions that work: https://stackoverflow.com/questions/35429144/haskell-using-a-constant-in-pattern-matching
