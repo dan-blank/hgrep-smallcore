@@ -35,6 +35,6 @@ data SomeWrapperAroundAnInt = SomeWrapperAroundAnInt Int
 
 someConstant = 42
 
-someFunction (SomeWrapperAroundAnInt someConstant) = -- do something, assuming that the input is (SomeWrapperAroundAnInt 42)
+someFunction (SomeWrapperAroundAnInt someConstant) = ... -- do something, assuming that the input is (SomeWrapperAroundAnInt 42)
 ```
 When using `someConstant` within a pattern matching, `someConstant` functions as a new variable name and binds whatever value is at this position in the pattern. I misused the constant as a guard, expecting the pattern to only match when the value at this position is equal to the constant. A rather obvious mistake in hindsight. Here is a stackoverflow thread with solutions that work: https://stackoverflow.com/questions/35429144/haskell-using-a-constant-in-pattern-matching
