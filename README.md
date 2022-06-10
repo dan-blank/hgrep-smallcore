@@ -1,6 +1,6 @@
 # hgrep-smallcore
 
-hgrep-smallcore is yet another haskell reimplementation of [grep](https://en.wikipedia.org/wiki/Grep) based on the paper ["Regular-expression derivatives reexamined"](https://www.ccs.neu.edu/home/turon/re-deriv.pdf). I wrote this together with [Borna Bešić](https://github.com/bornabesic) (who focused on the user facing parts, while I focused the regex engine) as an university project and polished it up slightly. It is able to process ERE compliant regexes (for the moment, sans [negated character sets](https://www.regular-expressions.info/charclass.html)). Works best on Linux. Interesting features:
+hgrep-smallcore is yet another haskell reimplementation of [grep](https://en.wikipedia.org/wiki/Grep) based on the paper ["Regular-expression derivatives reexamined"](https://www.ccs.neu.edu/home/turon/re-deriv.pdf). I wrote this together with [Borna Bešić](https://github.com/bornabesic) (who focused on the user facing parts, while I focused the regex engine) as an university project and polished it up slightly. It is able to process POSIX ERE compliant regexes (for the moment, sans [negated character sets](https://www.regular-expressions.info/charclass.html)). Works best on Linux. Interesting features:
 
 * It reduces [regexes](https://www.regular-expressions.info/posix.html) to a small core of 4 constructs, where the smallest construct is that of a character set (see 4.2 in the paper):
 ``` Haskell
@@ -21,7 +21,7 @@ Usage
 ---
 On the command line, call path-to-binary/hrep-exe.exe PATTERN FILE* 
 
-Where PATTERN is a ERE compliant regex and FILE* is at least one file.
+Where PATTERN is a POSIX ERE compliant regex and FILE* is at least one file.
 
 Lessons and concepts learned
 ----
