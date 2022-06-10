@@ -19,7 +19,9 @@ Within the folder, run "stack install". This will create an executable within th
 
 Usage
 ---
-On the command line, call path-to-binary/hrep-exe.exe PATTERN FILE* 
+On the command line, call 
+
+```path-to-binary/hrep-exe.exe PATTERN FILE*``` 
 
 Where PATTERN is a POSIX ERE compliant regex and FILE* is at least one file.
 
