@@ -31,7 +31,7 @@ Lessons and concepts learned
 
 **Mistake: Use of constants in-place as guards in pattern matching.** Wrong example:
 ``` Haskell
-data SomeWrapperAroundAnInt = SomeWrapperAroundAnInt int
+data SomeWrapperAroundAnInt = SomeWrapperAroundAnInt Int
 
 someConstant = 42
 
